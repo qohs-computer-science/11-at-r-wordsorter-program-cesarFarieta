@@ -46,7 +46,7 @@ public class WordSorter
 			word = word.replace("!", "");
 			word = word.replace("?", "");
 			word = word.replace("'", "");
-			System.out.println(word);
+			//System.out.println(word);
 			word=word.toLowerCase();
 			
 			int curLocation= word.charAt(0)-97;
@@ -59,10 +59,12 @@ public class WordSorter
 					found = false;
 
 			}// end for loop
-			if(found = false )	
+			if(found == false )	
 				wordList[curLocation].add(word);
 
 		}// end while loop
+
+		in = new Scanner(System.in); 
 
 		while(keepGoing == true){
 			System.out.println("Welcome!  You have the following options:");
@@ -73,15 +75,15 @@ public class WordSorter
 			System.out.println("5- Remove a word from the data structure");
 			System.out.println("6- Exit");
 			System.out.println("Which type of conversion would you like to perform?");
-			int decision = myObj.nextInt();
-			myObj.nextLine();
+			int decision = in.nextInt();
+			in.nextLine();
 
 			if(decision== 1)
-				wordsWithLetter();
+				wordsWithLetter(wordList);
 			else if(decision == 2)
-				printAll();
+				printAll(wordList);
 			else if(decision == 3)
-				printSize();
+				printSize(wordList);
 			else if(decision == 4)
 				findWord();
 			else if (decision == 5)
@@ -99,34 +101,46 @@ public class WordSorter
 		System.out.println("Please enter a letter");
 		String inputLetter = in.nextLine();
 		int currentLocation = inputLetter.charAt(0)-97;
+		if(array[currentLocation].size()>0){
+			for(int x =0;x<array.length;x++){
+				System.out.println(array[currentLocation].get(x));
+			}
+		}
 
-		for(int x =0;x<array.length;x++){
+		else 
+			System.out.println("no words for this letter");
+		
+
+	}
+
+
+
+	public static void printSize(ArrayList<String>[]array){
+		int total=0;
+
+		for(int x =0 ;x<array.length ; x++){// start for
+			total+=array[x].size();
+
+		}// end for
+		System.out.println(total);
+
+
+
+
+
+
+	}
+
+
+
+	public static void printAll(ArrayList<String>[]array){
+		for(int x =0 ;x<array.length ; x++){// start for
+			for(int y =0 ;y<array[x].size() ; y++)
+				System.out.println(array[x].get(y));
+
 
 		}
 
-		System.out.println(array[currentLocation]);
-
-	}
-
-
-
-	public static void printSize(){
-		int total;
-
-		for(){// start for
-
-
-		}// end for
-
-
-
-
-
-	}
-
-
-
-	public static void printAll(){
 
 	}
 
