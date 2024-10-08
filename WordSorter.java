@@ -4,7 +4,6 @@ import java.util.ArrayList;
 public class WordSorter 
 {// start class
 
-
 	public static void main(String[] args) 
 	{// start main
 
@@ -34,7 +33,7 @@ public class WordSorter
 
 		String word = "";
 		while(in.hasNext())
-		{
+		{// start while
 			word = in.next();
 			word = word.replace(",", "");
 			word = word.replace("(tm)", "");
@@ -64,7 +63,7 @@ public class WordSorter
 
 		in = new Scanner(System.in); 
 
-		while(keepGoing == true){
+		while(keepGoing == true){// start while
 			System.out.println("Welcome!  You have the following options:");
 			System.out.println("1- Print out all words starting with a specific letter");
 			System.out.println("2- Print out all words");
@@ -86,66 +85,68 @@ public class WordSorter
 				findWord(wordList);
 			else if (decision == 5)
 				removeWord(wordList);
-			else{
+			else{// start else
 				System.out.println("Thank you for coming");
 				keepGoing= false;
-			}
-		}
-	}
+			}// end else
+		}// end while
+	}// end main
 
-	public static void wordsWithLetter(ArrayList<String>[]array){
+	public static void wordsWithLetter(ArrayList<String>[]wordList){// start wordsWithLetter
 		Scanner in = new Scanner(System.in); 
 		System.out.println("Please enter a letter");
 		String inputLetter = in.nextLine();
 		int currentLocation = inputLetter.charAt(0)-97;
-		if(array[currentLocation].size()>0){
-			for(int x =0;x<array[currentLocation].size();x++){
-				System.out.println(array[currentLocation].get(x));
-			}
-		}
+		if(wordList[currentLocation].size()>0){// start if
+			for(int x =0;x<wordList[currentLocation].size();x++)
+				System.out.println(wordList[currentLocation].get(x));
+			
+		}// end if
 		else 
 			System.out.println("no words for this letter");
-	}
+	}// end wordWithLetter
 
 
 
-	public static void printSize(ArrayList<String>[]array){
+	public static void printSize(ArrayList<String>[]wordList){// start printSize
 		int total=0;
-		for(int x =0 ;x<array.length ; x++){// start for
-			total+=array[x].size();
+		for(int x =0 ;x<wordList.length ; x++){// start for
+			total+=wordList[x].size();
 		}// end for
 
 		if(total>0)
-			System.out.println("There are "+ total+ " unique words in the article” or “Empty List”  " );
+			System.out.println("There are "+ total+ " unique words in the article" );
 		else 
 			System.out.println( "Empty List" );
 
-	}
+	}// end printSize
 
 
 
-	public static void printAll(ArrayList<String>[]array){
+	public static void printAll(ArrayList<String>[]wordList){// start printAll
 		int count=0;
-		for(int x =0 ;x<array.length ; x++){// start for
-			for(int y =0 ;y<array[x].size() ; y++)
-				System.out.println(array[x].get(y));
-		}
+		for(int x =0 ;x<wordList.length ; x++){// start for
+			System.out.println("List for the letter " + wordList[x].get(x).charAt(0)+ ":" );
+			for(int y =0 ;y<wordList[x].size() ; y++)
+				System.out.println(wordList[x].get(y));
+					
+		}//end for
 		if (count !=0)
 			System.out.println("Empty List");
 
-	}
+	}// end PrintAll
 
 
 
-	public static void findWord(ArrayList<String>[]array){
+	public static void findWord(ArrayList<String>[]wordList){// start findWord
 		Scanner in = new Scanner(System.in); 
 		System.out.println("Please enter a single word with no symbols that you want to search for:");
 		String userW = in.nextLine();
 		boolean found = false;
 		int currLoco= userW.charAt(0)-97;
 
-		for (int x =0;x<array.length;x++)
-			if(userW.equals(array[currLoco].get(x)))
+		for (int x =0;x<wordList.length;x++)
+			if(userW.equals(wordList[currLoco].get(x)))
 				found= true;
 
 		if(found == true)
@@ -153,39 +154,27 @@ public class WordSorter
 		else 
 			System.out.println("“Word NOT found in the article.”");
 
-	}
+	}// end findWord
 
-	public static void removeWord(ArrayList<String>[]array){
+	public static void removeWord(ArrayList<String>[]wordList){//start removeWord
 		Scanner in = new Scanner(System.in); 
 		System.out.println("Please enter a single word with no symbols that you want to remove:");
 		String userRemove = in.nextLine();
 		boolean removedWord = false;
 		int curLo= userRemove.charAt(0)-97;
 
-		for (int x =0;x<array.length;x++)
-			if(userRemove.equals(array[curLo].get(x))){
-				array[curLo].remove(x);
+		for (int x =0;x<wordList.length;x++)
+			if(userRemove.equals(wordList[curLo].get(x))){// start if 
+				wordList[curLo].remove(x);
 				removedWord = true;
-			}
+				x--;
+			}// end if
 
 		if(removedWord == true)
 			System.out.println( "Word successfully removed from the list" );
 		else 
 			System.out.println( "Word NOT found in the article.");
 
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
+	}// end removeWord
 
 }
