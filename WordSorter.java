@@ -2,18 +2,18 @@ import java.io.File;
 import java.util.Scanner;
 import java.util.ArrayList; 
 public class WordSorter 
-{
+{// start class
 
 
 	public static void main(String[] args) 
-	{
+	{// start main
 
 		boolean keepGoing= true; 
 		Scanner in = new Scanner(System.in); 
 
 		ArrayList<String>[] wordList =  new ArrayList[26];
 
-		for(int x =0;x<26;x++){
+		for(int x =0;x<26;x++){// start for loop
 			wordList[x]=  new ArrayList<String>(); 
 		}// end for loop
 
@@ -55,8 +55,6 @@ public class WordSorter
 				if(word.equals(wordList[curLocation].get(x)))
 					found= true;
 
-				else 
-					found = false;
 
 			}// end for loop
 			if(found == false )	
@@ -85,9 +83,9 @@ public class WordSorter
 			else if(decision == 3)
 				printSize(wordList);
 			else if(decision == 4)
-				findWord();
+				findWord(wordList);
 			else if (decision == 5)
-				removeWord();
+				removeWord(wordList);
 			else{
 				System.out.println("Thank you for coming");
 				keepGoing= false;
@@ -97,77 +95,85 @@ public class WordSorter
 
 	public static void wordsWithLetter(ArrayList<String>[]array){
 		Scanner in = new Scanner(System.in); 
-
 		System.out.println("Please enter a letter");
 		String inputLetter = in.nextLine();
 		int currentLocation = inputLetter.charAt(0)-97;
 		if(array[currentLocation].size()>0){
-			for(int x =0;x<array.length;x++){
+			for(int x =0;x<array[currentLocation].size();x++){
 				System.out.println(array[currentLocation].get(x));
 			}
 		}
-
 		else 
 			System.out.println("no words for this letter");
-		
-
 	}
 
 
 
 	public static void printSize(ArrayList<String>[]array){
 		int total=0;
-
 		for(int x =0 ;x<array.length ; x++){// start for
 			total+=array[x].size();
-
 		}// end for
-		System.out.println(total);
 
-
-
-
-
+		if(total>0)
+			System.out.println("There are "+ total+ " unique words in the article” or “Empty List”  " );
+		else 
+			System.out.println( "Empty List" );
 
 	}
 
 
 
 	public static void printAll(ArrayList<String>[]array){
+		int count=0;
 		for(int x =0 ;x<array.length ; x++){// start for
 			for(int y =0 ;y<array[x].size() ; y++)
 				System.out.println(array[x].get(y));
-
-
 		}
-
-
-	}
-
-
-
-	public static void findWord(){
-
-	}
-
-
-	public static void binaryToDecimal(){
+		if (count !=0)
+			System.out.println("Empty List");
 
 	}
 
 
 
-	public static void removeWord(){
+	public static void findWord(ArrayList<String>[]array){
+		Scanner in = new Scanner(System.in); 
+		System.out.println("Please enter a single word with no symbols that you want to search for:");
+		String userW = in.nextLine();
+		boolean found = false;
+		int currLoco= userW.charAt(0)-97;
+
+		for (int x =0;x<array.length;x++)
+			if(userW.equals(array[currLoco].get(x)))
+				found= true;
+
+		if(found == true)
+			System.out.println("Word found in the article ");
+		else 
+			System.out.println("“Word NOT found in the article.”");
 
 	}
 
+	public static void removeWord(ArrayList<String>[]array){
+		Scanner in = new Scanner(System.in); 
+		System.out.println("Please enter a single word with no symbols that you want to remove:");
+		String userRemove = in.nextLine();
+		boolean removedWord = false;
+		int curLo= userRemove.charAt(0)-97;
 
+		for (int x =0;x<array.length;x++)
+			if(userRemove.equals(array[curLo].get(x))){
+				array[curLo].remove(x);
+				removedWord = true;
+			}
 
+		if(removedWord == true)
+			System.out.println( "Word successfully removed from the list" );
+		else 
+			System.out.println( "Word NOT found in the article.");
 
-
-
-
-
+	}
 
 
 
