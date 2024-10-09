@@ -1,3 +1,14 @@
+// Cesar Farieta 
+//pd 3
+//10/9/24
+//In this program I get a file from the user and I sort, store all the words based off of the letter that they start with. Then I ask the user to pick one of 6 options these option all do different things. 
+//To create this options I made them into methods which I just then called, depending on the input that they give me. The options are, Print out all words starting with a specific letter, the user would give me the letter. Print out all 
+//words that are stored. Print out the total number of unique words user.  Search and determine if a word is in the article, the user would give me the word that they want me to look for. Remove a word from the list, the user would also 
+//give me the word that they want me to remove from the listand finally they can exit the program.
+
+
+
+
 import java.io.File;
 import java.util.Scanner;
 import java.util.ArrayList; 
@@ -125,8 +136,9 @@ public class WordSorter
 
 	public static void printAll(ArrayList<String>[]wordList){// start printAll
 		int count=0;
+		String alpha="abcdefghijklmnopqrstuvwxyz";
 		for(int x =0 ;x<wordList.length ; x++){// start for
-			System.out.println("List for the letter " + wordList[x].get(x).charAt(0)+ ":" );
+			System.out.println("List for the letter " + alpha.charAt(x) + ":" );
 			for(int y =0 ;y<wordList[x].size() ; y++)
 				System.out.println(wordList[x].get(y));
 					
@@ -139,14 +151,15 @@ public class WordSorter
 
 
 	public static void findWord(ArrayList<String>[]wordList){// start findWord
-		Scanner in = new Scanner(System.in); 
+		Scanner in = new Scanner(System.in);
+		String alpha="abcdefghijklmnopqrstuvwxyz";
 		System.out.println("Please enter a single word with no symbols that you want to search for:");
 		String userW = in.nextLine();
 		boolean found = false;
-		int currLoco= userW.charAt(0)-97;
+		ArrayList<String> temp = wordList[alpha.indexOf(userW.toLowerCase().charAt(0))];
 
-		for (int x =0;x<wordList.length;x++)
-			if(userW.equals(wordList[currLoco].get(x)))
+		for (int x =0;x<temp.size();x++)
+			if(temp.get(x).equals(userW))
 				found= true;
 
 		if(found == true)
@@ -158,14 +171,16 @@ public class WordSorter
 
 	public static void removeWord(ArrayList<String>[]wordList){//start removeWord
 		Scanner in = new Scanner(System.in); 
+		String alpha="abcdefghijklmnopqrstuvwxyz";
 		System.out.println("Please enter a single word with no symbols that you want to remove:");
 		String userRemove = in.nextLine();
+		ArrayList<String> temp = wordList[alpha.indexOf(userRemove.toLowerCase().charAt(0))];
 		boolean removedWord = false;
 		int curLo= userRemove.charAt(0)-97;
 
-		for (int x =0;x<wordList.length;x++)
-			if(userRemove.equals(wordList[curLo].get(x))){// start if 
-				wordList[curLo].remove(x);
+		for (int x =0;x<temp.size();x++)
+			if(temp.get(x).equals(userRemove)){// start if 
+				temp.remove(x);
 				removedWord = true;
 				x--;
 			}// end if
@@ -177,4 +192,4 @@ public class WordSorter
 
 	}// end removeWord
 
-}
+}// end class
