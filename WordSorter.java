@@ -4,7 +4,7 @@
 //In this program I get a file from the user and I sort, store all the words based off of the letter that they start with. Then I ask the user to pick one of 6 options these option all do different things. 
 //To create this options I made them into methods which I just then called, depending on the input that they give me. The options are, Print out all words starting with a specific letter, the user would give me the letter. Print out all 
 //words that are stored. Print out the total number of unique words user.  Search and determine if a word is in the article, the user would give me the word that they want me to look for. Remove a word from the list, the user would also 
-//give me the word that they want me to remove from the listand finally they can exit the program.
+//give me the word that they want me to remove from the list and finally they can exit the program.
 
 
 
